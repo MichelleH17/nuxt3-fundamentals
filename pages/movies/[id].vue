@@ -1,15 +1,13 @@
 <template>
   <div>
-    {{ paramsID }}
+    <pre>{{ data }}</pre>
   </div>
 </template>
 
 <script lang="ts" setup>
 const route = useRoute()
-const paramsID = route.params.id
 
+const { data } = await useAsyncData(() => {
+  return $fetch(`http://www.omdbapi.com/?apikey=4203574e&i=${route.params.id}`)
+})
 </script>
-
-<style>
-
-</style>
