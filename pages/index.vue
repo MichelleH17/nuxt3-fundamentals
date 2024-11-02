@@ -2,7 +2,7 @@
 
 <template>
   <div>
-    Page: index
+    Page: Home page
   </div>
 </template>
 
