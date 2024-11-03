@@ -8,7 +8,7 @@
 const route = useRoute()
 // shortshand for $fetch within useAsyncData
 const { data } = await useFetch(`http://www.omdbapi.com/?apikey=4203574e&i=${route.params.id}`, {
-  pick: ["Plot", "Title", "Error"],
+  pick: ["Plot", "Title", "Poster", "Error"],
   key: `/movies/${route.params.id}`,
 })
 
@@ -28,4 +28,26 @@ if (data.value.Error === "Incorrect IMDb ID.") {
     }
   },
 }) */
+
+useHead({
+  title: data.value.Title,
+  meta: [
+    {
+      name: "description",
+      content: data.value.Plot
+    },
+    {
+      property: "og:description",
+      content: data.value.Plot
+    },
+    {
+      property: "og:image",
+      content: data.value.Poster
+    },
+    {
+      name: "twitter:card",
+      content: "summary_large_image"
+    }
+  ],
+})
 </script>
